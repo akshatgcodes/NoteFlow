@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}NoteFlow - Notes{% endblock %}
+{% block content %}
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>Tags</h3>
+      <ul class="tag-list">
+        <li><a class="tag-pill {% if not active_tag %}active{% endif %}" href="{{ url_for('index', q=query) }}">All</a></li>
+        {% for t in tags %}
+          <li><a class="tag-pill {% if active_tag == t %}active{% endif %}" href="{{ url_for('index', tag=t, q=query) }}">{{ t }}</a></li>
+        {% endfor %}
+      </ul>
+    </aside>
+    <section class="notes">
+      {% if active_tag or query %}
+        <p class="filter-info">
+          {% if active_tag %}Filtering by tag <strong>{{ active_tag }}</strong>{% endif %}
+          {% if query %}{% if active_tag %} &middot; {% endif %}matching <strong>&ldquo;{{ query }}&rdquo;</strong>{% endif %}
+          &mdash; <a href="{{ url_for('index') }}">clear</a>
+        </p>
+      {% endif %}
+
+      {% if notes|length == 0 %}
+        <p class="empty">No notes found.</p>
+      {% endif %}
+
+      {% for item in notes %}
+        <article class="note-card">
+          <h2><a href="{{ url_for('note_detail', slug=item.meta.slug, q=query) }}">{{ item.meta.title }}</a></h2>
+          <div class="meta-row">
+            <span class="created">{{ item.meta.created }}</span>
+            {% for t in item.meta.tags %}
+              <a class="tag-pill small" href="{{ url_for('index', tag=t) }}">{{ t }}</a>
+            {% endfor %}
+          </div>
+          <p class="snippet">{{ item.snippet }}...</p>
+        </article>
+      {% endfor %}
+    </section>
+  </div>
+{% endblock %}
