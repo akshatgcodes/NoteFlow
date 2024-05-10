@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}NoteFlow{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('pygments_css') }}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{{ url_for('index') }}">NoteFlow</a>
+    <form class="search-form" action="{{ url_for('index') }}" method="get">
+      {% if active_tag %}<input type="hidden" name="tag" value="{{ active_tag }}">{% endif %}
+      <input type="text" name="q" placeholder="Full-text search..." value="{{ query or '' }}">
+      <button type="submit">Search</button>
+    </form>
+  </header>
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
