@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}{{ meta.title }} - NoteFlow{% endblock %}
+{% block content %}
+  <a class="back-link" href="{{ url_for('index') }}">&larr; back to notes</a>
+  <article class="note-full">
+    <h1>{{ meta.title }}</h1>
+    <div class="meta-row">
+      <span class="created">{{ meta.created }}</span>
+      {% for t in meta.tags %}
+        <a class="tag-pill small" href="{{ url_for('index', tag=t) }}">{{ t }}</a>
+      {% endfor %}
+    </div>
+    <div class="note-content">
+      {{ content|safe }}
+    </div>
+  </article>
+{% endblock %}
