@@ -152,3 +152,7 @@ immediately.
 ## Platform
 
 Any OS with Python 3.8+.
+
+## Notes
+
+Built as a focused, single-purpose tool - a local Markdown notes system, nothing more, nothing less.
