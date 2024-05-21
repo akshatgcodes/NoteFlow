@@ -156,3 +156,7 @@ Any OS with Python 3.8+.
 ## Notes
 
 Built as a focused, single-purpose tool - a local Markdown notes system, nothing more, nothing less.
+
+## Troubleshooting
+
+If something doesn't run as expected, double-check you're using the dependency versions noted above and running the exact commands from the "Run it" section.
