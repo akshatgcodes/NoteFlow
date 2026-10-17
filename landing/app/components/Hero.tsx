@@ -30,9 +30,16 @@ export default function Hero() {
 
         <div className="mt-9 flex flex-wrap gap-3">
           <a
-            href="#run-it"
+            href="/notes"
             className="rounded-lg px-5 py-2.5 text-sm font-semibold transition-transform hover:scale-[1.02]"
             style={{ background: "var(--accent)", color: "var(--bg-elevated)" }}
+          >
+            Browse the live notes
+          </a>
+          <a
+            href="#run-it"
+            className="rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors hover:opacity-80"
+            style={{ borderColor: "var(--border)" }}
           >
             Run it locally
           </a>

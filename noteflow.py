@@ -267,7 +267,7 @@ def highlight_text(html, query):
 
 
 def create_app():
-    from flask import Flask, render_template, request, abort
+    from flask import Flask, render_template, request, abort, redirect, url_for
     import markdown as md
     from pygments.formatters import HtmlFormatter
 
@@ -288,6 +288,12 @@ def create_app():
         return sorted(tags)
 
     @app.route("/")
+    def landing():
+        # In production "/" is the landing page (landing/ static export,
+        # routed by vercel.json); locally, go straight to the notes.
+        return redirect(url_for("index"))
+
+    @app.route("/notes")
     def index():
         notes = load_all_notes()
         tag = request.args.get("tag", "").strip()
