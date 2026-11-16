@@ -1,4 +1,4 @@
 Flask
 Markdown
 Pygments
-gunicorn>=26.2.0
+gunicorn>=27.0.1
